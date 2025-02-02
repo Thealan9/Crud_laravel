@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        echo "form registro";
+        echo view('admin/products/create');
     }
 
     /**
