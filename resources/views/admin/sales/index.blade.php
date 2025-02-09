@@ -1,3 +1,8 @@
-<div>
-    <!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
-</div>
+@extends('layout.main_template')
+
+@section('sectionMain')
+<br>
+<h1 class="display-1">Ventas</h1>
+<br>
+
+@endsection

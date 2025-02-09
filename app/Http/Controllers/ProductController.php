@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo view('admin/products/index');
+        $products= Product::get();
+
+        return view('admin/products/index',compact('products'));
     }
 
     /**
@@ -20,7 +23,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        echo view('admin/products/create');
+        $brands = Brand::pluck('id','brand'); //solo datos especificos 
+        //dd($brands);
+        return view('admin/products/create',compact('brands'));
     }
 
     /**
@@ -28,7 +33,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //echo "Los datos pasan";
+        //dd($request->all());
+        Product::create($request->all());
+        return to_route('products.index')-> with('status','Producto Registrado');
     }
 
     /**

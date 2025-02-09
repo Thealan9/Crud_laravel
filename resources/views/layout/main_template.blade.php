@@ -9,6 +9,12 @@
 </head>
 <body>
     @include('fragments.navbar')
+
+    @if(session('status'))
+       {{ session('status')}}
+        
+    @endif
+
     @yield('sectionMain')
 
 
