@@ -21,19 +21,21 @@
                     <td> {{ $p->unit_price }}</td>
                     <td> {{ $p->image }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('products.show', $p) }}"><i class="fa-solid fa-eye"></i></a>
-                        <a class="btn btn-warning" href="{{ route('products.edit', $p) }}"><i
-                                class="fa-solid fa-pen-to-square"></i></a>
+                        <div class="d-flex gap-2">
+                            <a class="btn btn-primary" href="{{ route('products.show', $p) }}"><i
+                                    class="fa-solid fa-eye"></i></a>
+                            <a class="btn btn-warning" href="{{ route('products.edit', $p) }}"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
 
-                    </td>
-                    <td>
-                        <form action="{{ route('products.destroy', $p) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger" href=""><i
-                                    class="fa-solid fa-trash"></i></button>
 
-                        </form>
+                            <form action="{{ route('products.destroy', $p) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" href=""><i
+                                        class="fa-solid fa-trash"></i></button>
+
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
@@ -42,5 +44,5 @@
         </tbody>
     </table>
 
-    {{$products->links()}}
+    {{ $products->links() }}
 @endsection
