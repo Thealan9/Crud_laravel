@@ -35,6 +35,14 @@ class ProductController extends Controller
     {
         //echo "Los datos pasan";
         //dd($request->all());
+        
+        $request->validate([//validación directa
+            'name_product'=> 'required | min:5|max:50',
+            'brand_id'=> 'required | integer',
+            'stock'=> 'required | integer',
+            'unit_price'=> 'required | decimal:2,4',
+            'image'=> 'required'
+        ]);
         Product::create($request->all());
         return to_route('products.index')-> with('status','Producto Registrado');
     }
@@ -66,9 +74,11 @@ class ProductController extends Controller
         return to_route('products.index')-> with('status','Producto Actualizado');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function delete(Product $product){
+        return view('admin.products.delete', compact('product'));
+
+    }
+
     public function destroy(Product $product)
     {
         $product->delete();

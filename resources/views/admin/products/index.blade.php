@@ -27,14 +27,17 @@
                             <a class="btn btn-warning" href="{{ route('products.edit', $p) }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
 
+                                    <a class="btn btn-danger" href="{{ route("products.delete", $p) }}"><i
+                                        class="fa-solid fa-trash"></i></a>
 
-                            <form action="{{ route('products.destroy', $p) }}" method="POST">
+
+                            {{-- <form action="{{ route('products.destroy', $p) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger" href=""><i
                                         class="fa-solid fa-trash"></i></button>
 
-                            </form>
+                            </form> --}}
                         </div>
                     </td>
                 </tr>
