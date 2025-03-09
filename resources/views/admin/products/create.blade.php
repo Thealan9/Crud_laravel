@@ -11,7 +11,7 @@
 
             </div>
             <div class="col">
-                <form action="{{ route('products.store') }}" method="POST">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <label class="form-label">Nombre del Producto</label>

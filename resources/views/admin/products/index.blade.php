@@ -19,7 +19,7 @@
                     <td> {{ $p->brand_id }}</td>
                     <td> {{ $p->stock }}</td>
                     <td> {{ $p->unit_price }}</td>
-                    <td> {{ $p->image }}</td>
+                    <td> <img src="/imgs/products/{{ $p->imagen }}" width="60" alt="producto"></td>
                     <td>
                         <div class="d-flex gap-2">
                             <a class="btn btn-primary" href="{{ route('products.show', $p) }}"><i

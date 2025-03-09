@@ -8,5 +8,5 @@
 <p class="display-6">Precio: {{$product->unit_price}} </p>
 <p class="display-6">Imagen: {{$product->image}}</p>
 
-<button><a href="{{route("products.index")}}">Regresar</a></button>
+<a class="btn btn-outline-primary" href="{{route("products.index")}}">Regresar</a>
 @endsection
