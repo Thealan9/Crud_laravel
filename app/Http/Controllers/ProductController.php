@@ -49,11 +49,11 @@ class ProductController extends Controller
         $data = $request->all();
 
         if(isset($data["image"])){
-             $filename = time().".".$data["image"] ->extension();
+            $data["image"]= $filename = time().".".$data["image"] ->extension();
 
             $request->image->move(public_path("imgs/products"),$filename);
         }
-        Product::create($request->all());
+        Product::create($data);
         return to_route('products.index')-> with('success','Producto Registrado');
     }
 
@@ -87,8 +87,15 @@ class ProductController extends Controller
             'unit_price'=> 'required | decimal:2,4',
             'image'=> 'required'
         ]);*/
-        
-        $product->update($request->all());
+        $data = $request->all();
+
+        if(isset($data["image"])){
+            $data["image"]= $filename = time().".".$data["image"] ->extension();
+
+            $request->image->move(public_path("imgs/products"),$filename);
+        }
+
+        $product->update($data);
         return to_route('products.index')-> with('success','Producto Actualizado');
     }
 

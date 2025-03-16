@@ -11,6 +11,7 @@
             <th>Precio</th>
             <TH>Imagen</TH>
             <th>Acciones</th>
+            <th>Fecha de C</th>
         </thead>
         <tbody>
             @foreach ($products as $p)
@@ -19,7 +20,7 @@
                     <td> {{ $p->brand_id }}</td>
                     <td> {{ $p->stock }}</td>
                     <td> {{ $p->unit_price }}</td>
-                    <td> <img src="/imgs/products/{{ $p->imagen }}" width="60" alt="producto"></td>
+                    <td> <img src="/imgs/products/{{ $p->image }}" width="60" alt="producto"></td>
                     <td>
                         <div class="d-flex gap-2">
                             <a class="btn btn-primary" href="{{ route('products.show', $p) }}"><i
@@ -39,6 +40,10 @@
 
                             </form> --}}
                         </div>
+                    </td>
+                    <td>
+                        {{-- {{ $p->created_at->DiffForHumans() }} --}}
+                        {{ $p->created_at->format('d M Y h:i a') }}
                     </td>
                 </tr>
             @endforeach

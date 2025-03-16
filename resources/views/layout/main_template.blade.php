@@ -14,7 +14,8 @@
 
     @include('fragments.alerts')
 
-    @include('fragments.errorsv')
+    {{-- @include('fragments.errorsv') --}}
+    
     @yield('sectionMain')
 
 
