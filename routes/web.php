@@ -45,3 +45,23 @@ Route::resource(('/brands'),App\Http\Controllers\BrandController::class);
 Route::resource(('/clients'),App\Http\Controllers\ClientController::class);
 Route::resource(('/sales'),App\Http\Controllers\SaleController::class);
 Route::resource(('/addresses'),App\Http\Controllers\AddressController::class);
+
+
+
+
+
+//Login
+
+route::get('register',[App\Http\Controllers\Auth\RegisterController::class,'show'])->name('register');
+route::post('register',[App\Http\Controllers\Auth\RegisterController::class,'handle'])->name('register.handle');
+
+route::get('login',[App\Http\Controllers\Auth\LoginController::class,'show'])->name('login');
+route::post('login',[App\Http\Controllers\Auth\LoginController::class,'handle'])->name('login.handle');
+
+route::post('logout',[App\Http\Controllers\Auth\LogoutController::class,'handle'])->name('logout');
+
+route::middleware(['auth'])->group(function(){
+    //Route::resource(('/products'),App\Http\Controllers\ProductController::class);
+    Route::get(('/products'),[App\Http\Controllers\ProductController::class,'index'])
+    ->name('products.index');
+});
