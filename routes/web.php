@@ -6,52 +6,19 @@ use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Route;
 
 
+//client
+//Route::get('/', function () { return view('Client.index');})->name('inicio');
+Route::get('/', [App\Http\Controllers\ClientController::class,'index'])->name('inicio');
+Route::resource(('/products'),App\Http\Controllers\ProductController::class);
 
-Route::get('/', function () {
-    return view('index');
+
+route::middleware(['auth'])->group(function(){
+    Route::resource(('/services'),App\Http\Controllers\ServiceController::class);
+
 });
 
-Route::get('/pollo', function () {
-    return view('/admin/products/index');
-});
 
-//Route::resource(('/products'),App\Http\Controllers\ProductController::class);
-
-Route::get(('/products'),[App\Http\Controllers\ProductController::class,'index'])
-->name('products.index');
-
-Route::get(('/products/create'),[App\Http\Controllers\ProductController::class,'create'])
-->name('products.create');
-
-Route::post(('/products'),[App\Http\Controllers\ProductController::class,'store'])
-->name('products.store');
-
-Route::get('/products/{product}', [App\Http\Controllers\ProductController::class,'show'])
-->name('products.show');
-
-Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class,'edit'])
-->name('products.edit');
-
-Route::patch('/products/{product}', [App\Http\Controllers\ProductController::class,'update'])
-->name('products.update');
-
-Route::delete('/products/{product}', [App\Http\Controllers\ProductController::class,'destroy'])
-->name('products.destroy');
-
-Route::get('/products/{product}/delete', [App\Http\Controllers\ProductController::class,'delete'])->name('products.delete');
-
-
-Route::resource(('/brands'),App\Http\Controllers\BrandController::class);
-Route::resource(('/clients'),App\Http\Controllers\ClientController::class);
-Route::resource(('/sales'),App\Http\Controllers\SaleController::class);
-Route::resource(('/addresses'),App\Http\Controllers\AddressController::class);
-
-
-
-
-
-//Login
-
+//login
 route::get('register',[App\Http\Controllers\Auth\RegisterController::class,'show'])->name('register');
 route::post('register',[App\Http\Controllers\Auth\RegisterController::class,'handle'])->name('register.handle');
 
@@ -60,8 +27,13 @@ route::post('login',[App\Http\Controllers\Auth\LoginController::class,'handle'])
 
 route::post('logout',[App\Http\Controllers\Auth\LogoutController::class,'handle'])->name('logout');
 
+
+//admin
+
 route::middleware(['auth'])->group(function(){
-    //Route::resource(('/products'),App\Http\Controllers\ProductController::class);
-    Route::get(('/products'),[App\Http\Controllers\ProductController::class,'index'])
-    ->name('products.index');
+    Route::get('/admin', function () { return view('Admin.index');})->middleware('role:admin')->name('admin');
+
+    Route::resource(('suppliers'),App\Http\Controllers\SupplierController::class)->middleware('role:admin');
+
 });
+

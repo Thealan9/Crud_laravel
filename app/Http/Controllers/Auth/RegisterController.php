@@ -19,17 +19,21 @@ class RegisterController extends Controller
     }
 
     public function handle(){
+
         request()->validate([
             'name' => ['required','string','max:100'],
             'email' => ['required','email','max:150'],
-            'password' => ['required','string','min:4','confirmed']
+            'password' => ['required','string','min:4','confirmed'],
+            'password_confirmation' => ['required','string','min:4'],
+            'phone' => ['required', 'string','min:7', 'max:15']
 
         ]);
 
         $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
-            'password' => Hash::make(request('password'))
+            'password' => Hash::make(request('password')),
+            'phone' => request('phone')
 
         ]);
 
